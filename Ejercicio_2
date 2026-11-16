@@ -1,0 +1,30 @@
+import numpy as np
+
+glucosa = np.array([
+    [ 95, 102,  99],
+    [140, 155, 148],
+    [ 88,  91,  85],
+    [110, 118, 125],
+])
+
+
+prom_paciente = glucosa.mean(axis=1)
+
+print("a) Promedio por paciente:")
+for i, valor in enumerate(prom_paciente):
+    print(f"   Paciente {i}: {valor:.2f} mg/dL")
+
+
+prom_dia = glucosa.mean(axis=0)
+dia_mas_alto = prom_dia.argmax()
+
+print("b) Promedio por día:", np.round(prom_dia, 2))
+print(f"   El día más alto fue el día {dia_mas_alto} con {prom_dia[dia_mas_alto]:.2f} mg/dL")
+
+
+pos_plana = glucosa.argmax()
+
+paciente, dia = np.unravel_index(pos_plana, glucosa.shape)
+
+print("c) Posición plana del máximo:", pos_plana)
+print(f"   Paciente {paciente}, día {dia}: {glucosa[paciente, dia]} mg/dL")
